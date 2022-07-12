@@ -1,0 +1,9 @@
+--------
+Holiday Manager Main Menu
+--------
+1. Add A Holiday
+2. Remove A Holiday
+3. Save Holiday List
+4. View Holidays
+5. Exit
+--------
