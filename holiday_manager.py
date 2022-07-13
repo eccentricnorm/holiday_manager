@@ -147,7 +147,7 @@ class HolidayList:
 
 
     def is_saved(self):
-        with open('data\saved_holidays.json') as json_file:
+        with open('data/saved_holidays.json') as json_file:
         # Loads JSON and
             saved_list = [] 
             json_dict = json.load(json_file)
@@ -189,7 +189,7 @@ def main():
     file_exists = os.path.exists("data/saved_holidays.json")
 
     if file_exists:
-        HolidayList.read_json(holiday_dict_list, "data\saved_holidays.json")
+        HolidayList.read_json(holiday_dict_list, "data/saved_holidays.json")
         print("Existing holiday list loaded.")
     else:
         print('Loading presaved holidays...')
@@ -245,7 +245,7 @@ def main():
                     save_confirmation = input("Please select a valid option. [Y/N]: ").strip().upper()
                 else:
                     if save_confirmation == "Y":
-                        HolidayList.save_to_json(holiday_dict_list, "data\saved_holidays.json")
+                        HolidayList.save_to_json(holiday_dict_list, "data/saved_holidays.json")
                         print("Your changes have been saved.")
                     else:
                         print("Save Cancelled. Returning to Main Menu")
