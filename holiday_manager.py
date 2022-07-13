@@ -281,7 +281,7 @@ def main():
                 exit_options = ["Y", "N"]
                 # Determine if there is a saved JSON and if it matches inner_list
                 save_file_exists = os.path.exists("data/saved_holidays.json")
-                if file_exists:
+                if save_file_exists:
                     if HolidayList.is_saved(holiday_dict_list):
                     # If matches, confirm exit
                         exit_confirmation = str(input("Are you sure you want to exit? [Y/N]: ")).strip().upper()
