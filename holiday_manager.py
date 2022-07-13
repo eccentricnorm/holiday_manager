@@ -309,7 +309,7 @@ def main():
                 else:
                     # If no file, warn user it is not saved
                     print("Are you sure you want to exit?")
-                    print("Changes will be lost.")
+                    print("Save File Not Found. Changes will be lost.")
                     exit_confirmation = str(input("[Y/N]: ")).strip().upper()
                     while exit_confirmation not in exit_options:
                         print("Please enter a valid option.")
@@ -320,7 +320,7 @@ def main():
                         else:
                             print("Exit Cancelled. Returning to main menu.")
             else:
-                print("\n !!Please Select A Valid Option!!") 
+                print("\n !!Please Select A Valid Option!!")
     else:
         # App Closes when Still Working is False
         print("\nGoodbye!\n")
