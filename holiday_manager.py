@@ -118,17 +118,14 @@ class HolidayList:
     
     def filter_holidays_by_week(self, year, week_number):
         # Uses entered or calculated year and week to filter holidays and returns result
-        for holiday_test in self.inner_holiday:
-            print(type(holiday_test))
-        clone_list = self.inner_holiday
+
         desired_year = int(year)
         desired_week = int(week_number)
-        # print(self.inner_holiday) #REMOVE
+
         filtered_holidays = []
         filtered_holidays = list(filter(lambda holiday : holiday.date.isocalendar()[0] == desired_year and 
-            Holiday.date.isocalendar()[1] == desired_week,))
-        print(filtered_holidays)
-        print(type(filtered_holidays))
+            holiday.date.isocalendar()[1] == desired_week, self.inner_holiday))
+
         return filtered_holidays
 
     def displayHolidaysInWeek(holiday_list):
@@ -282,20 +279,35 @@ def main():
                 print("\nExit")
                 print("=============")
                 exit_options = ["Y", "N"]
-                # Determine if JSON matches inner_list
-                if HolidayList.is_saved(holiday_dict_list):
-                # If matches, confirm exit
-                    exit_confirmation = str(input("Are you sure you want to exit? [Y/N]: ")).strip().upper()
-                    while exit_confirmation not in exit_options:
-                        print("Please enter a valid option.")
+                # Determine if there is a saved JSON and if it matches inner_list
+                save_file_exists = os.path.exists("data/saved_holidays.json")
+                if file_exists:
+                    if HolidayList.is_saved(holiday_dict_list):
+                    # If matches, confirm exit
                         exit_confirmation = str(input("Are you sure you want to exit? [Y/N]: ")).strip().upper()
-                    else:
-                        if exit_confirmation == "Y":
-                            still_working = False
+                        while exit_confirmation not in exit_options:
+                            print("Please enter a valid option.")
+                            exit_confirmation = str(input("Are you sure you want to exit? [Y/N]: ")).strip().upper()
                         else:
-                            print("Exit Cancelled. Returning to main menu.")
+                            if exit_confirmation == "Y":
+                                still_working = False
+                            else:
+                                print("Exit Cancelled. Returning to main menu.")
+                    else:
+                        # If different, warn user it is not saved
+                        print("Are you sure you want to exit?")
+                        print("Changes will be lost.")
+                        exit_confirmation = str(input("[Y/N]: ")).strip().upper()
+                        while exit_confirmation not in exit_options:
+                            print("Please enter a valid option.")
+                            exit_confirmation = str(input("Are you sure you want to exit? [Y/N]: ")).strip().upper()
+                        else:
+                            if exit_confirmation == "Y":
+                                still_working = False
+                            else:
+                                print("Exit Cancelled. Returning to main menu.")
                 else:
-                    # If different, warn user it is not saved
+                    # If no file, warn user it is not saved
                     print("Are you sure you want to exit?")
                     print("Changes will be lost.")
                     exit_confirmation = str(input("[Y/N]: ")).strip().upper()
